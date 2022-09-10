@@ -46,6 +46,149 @@ table tr {
     background-color: whitesmoke; 
 }
 
+.warning {
+    color:red;
+    font-weight: 500;
+    margin-left: 8%;
+}
+
+.warningUpl {
+    color:red;
+    font-weight: 500;
+    margin-left: 58%;
+}
+
+.warningDlt {
+    color: red;
+    font-weight: 500;
+    text-align: center;
+    margin-top: 150px;
+}
+
+.createField{
+    padding: 10px 5px 10px 10px;
+    width: 40%;
+    text-align: center;
+    margin: 2% 0 5% 5%;
+    float: left;
+}
+
+.createInput {
+   background-color: rgb(31, 30, 30);
+   color: white;
+   box-shadow: 1px 3px 10px black;
+   border: none;
+   line-height: 2.3;
+   width: 70%;
+   margin-right: 10px;
+}
+
+.createButton {
+    background-color: transparent;
+    border-color: black;
+    line-height: 2;
+    padding: 0 5px;
+    font-size: 15px;
+    text-align: center;
+    color: black;
+    font-weight: bold;
+    letter-spacing: 1px;
+    box-shadow: 1px 3px 10px black;
+    cursor: pointer;
+}
+
+.createButton:hover {
+    background-color: black;
+    color: white;
+    border: 2px solid white;
+}
+
+.uploadField{
+    padding: 10px 5px 10px 10px;
+    width: 40%;
+    text-align: center;
+    margin: 2% 5% 5% 0;
+    float: right;
+}
+
+.uploadInput {
+    background-color:rgb(31, 30, 30);
+    color: white;
+    box-shadow: 1px 3px 10px black;
+    line-height: 2.5;
+    width: 70%;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.downloadBtn {
+    color: white;
+    background-color:#034f84;
+    border: none;
+    font-weight: 600;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.downloadBtn:hover {
+    background-color: #02375e;
+}
+
+.deleteBtn {
+    color: white;
+    background-color:#e80707;
+    border: none;
+    font-weight: 600;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.deleteBtn:hover {
+    background-color: rgb(154, 12, 12);
+}
+
+.button {
+    background-color:  whitesmoke;
+    position: relative;
+    top: 8px;
+}
+
+.btn-back {
+    font-size: 20px;
+    border-color: black;
+    color: black;
+    font-weight: bold;
+    letter-spacing: 1px;
+    box-shadow: 1px 3px 10px black;
+    cursor: pointer;
+    background-color: transparent;
+    line-height: 2;
+    position: relative;
+    left: 68px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.btn-back:hover {
+    background-color: black;
+    color: white;
+    border: 2px solid white;
+}
+
+.backBtn {
+    background-color: transparent;
+    color: black;
+    border-color: white;
+    text-decoration: none;
+}
+
+.backBtn:hover {
+    background-color: black;
+    color: white;
+    border-color: white;
+}
+
 .btn-logout {
     font-size: 20px;
     border-color: black;
@@ -64,3 +207,15 @@ table tr {
     border: 2px solid white;
 }
 
+.btn-log {
+    background-color: transparent;
+    color: black;
+    border-color: white;
+    text-decoration: none;
+}
+
+.btn-log:hover {
+    background-color: black;
+    color: white;
+    border-color: white;
+}

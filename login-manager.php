@@ -1,4 +1,6 @@
-<?php session_start(); 	
+<?php 
+
+    session_start(); 	
 
     $message = ['username' => 'password', 'username1' => 'password1','username2' => 'password2'];
 	if(isset($_POST['Submit'])){

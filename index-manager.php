@@ -7,18 +7,19 @@ if (!isset($_SESSION['UserData']['Username'])) {
 }
 
 print('<h3 class="logoutText";">Congratulation! You have logged into password protected page.
-<button class="btn-logout">
-<a class="btn-log" href="logout-manager.php">Click here</a></button> to Logout.</h3>');
+    <button class="btn-logout">
+        <a class="btn-log" href="logout-manager.php">Click here</a>
+    </button> to Logout.</h3>');
 print('<br>');
 print('<h1 style="color:black; text-align:center;">File Manager</h1>');
 
 
 // creating a new folder
-$path=isset($_GET["path"]) ? './' . $_GET["path"] : './';
+$path=isset($_GET["path"]) ? "./" . $_GET["path"] : "./";
     if (isset($_POST['createfolder'])) {
         $foldername = ($_POST['createfolder']);
     if (!file_exists($path . $foldername)) {
-        mkdir($path . "/" . $foldername);
+        mkdir($path . "./" . $foldername);
         print('<p class="warning">Folder was created!</p>');
         header('refresh: 2');
     } else if ($foldername) {
@@ -29,14 +30,14 @@ $path=isset($_GET["path"]) ? './' . $_GET["path"] : './';
         header('refresh: 2');
     }
 }
-print(' 
-    <form action="" method="POST" enctype="multipart/form-data">
+print( 
+    '<form action="" method="POST" enctype="multipart/form-data">
         <div class="createField">
             <input type="text" name="createfolder" class="createInput" />
             <input type="submit" name="submit" value="Create folder" class="createButton" />
         </div>
-    </form>
-');
+    </form>'
+);
 
 
 // upload file logic
@@ -65,19 +66,19 @@ if (isset($_FILES['image'])) {
         print_r($errors);
     }
 }
-print('
-    <form action="" method="POST" enctype="multipart/form-data">
+print(
+    '<form action="" method="POST" enctype="multipart/form-data">
         <div class="uploadField">
             <input type="file" name="image" class="uploadInput" />
             <input type="submit" value="Upload image" class="createButton" />
         </div>
-    </form>
-');
+    </form>'
+);
 
 
 // file download logic
 if (isset($_POST['download'])) {
-    $file = './'. $_GET['path'] . $_POST['download'];
+    $file = "./". $_GET['path'] . $_POST['download'];
     $fileToDownloadEscaped = str_replace("&nbsp;", " ", htmlentities($file, 0, 'utf-8'));
     ob_clean();
     ob_start();
@@ -97,7 +98,7 @@ if (isset($_POST['download'])) {
 
 // file delete logic
 if (isset($_POST['delete'])) {
-    $fileDelete = './'. $path . $_POST['delete'];
+    $fileDelete = "./". $path . $_POST['delete'];
     $fileDeleteEscaped = str_replace("&nbsp;", " ", htmlentities($fileDelete, 0, 'utf-8'));
     if (is_file($fileDelete)) {
         if (file_exists($fileDelete)) {
@@ -113,7 +114,7 @@ if (isset($_POST['delete'])) {
 
 
 // folder and files list
-$path = isset($_GET["path"]) ? './' . $_GET["path"] : './';
+$path = isset($_GET["path"]) ? "./" . $_GET["path"] : "./";
 $files_and_dirs = scandir($path);
 print('<table><th>Type</th><th>Name</th><th>Actions</th>');
 foreach ($files_and_dirs as $fnd) {
@@ -122,17 +123,17 @@ foreach ($files_and_dirs as $fnd) {
         print('<td>' . (is_dir($path . $fnd) ? "Directory" : "File") . '</td>');
         print('<td>' . (is_dir($path . $fnd)
                 ? '<a href="' . (isset($_GET['path'])
-                ? $_SERVER['REQUEST_URI'] . $fnd . '/'
-                : $_SERVER['REQUEST_URI'] . '?path=' . $fnd . '/') . '">' . $fnd . '</a>'
+                ? $_SERVER['REQUEST_URI'] . $fnd . "/"
+                : $_SERVER['REQUEST_URI'] . '?path=' . $fnd . "/") . '">' . $fnd . '</a>'
                 :  $fnd)
             . '</td>');
         print('<td>' . (is_dir($path . $fnd)
             ? ''
             : ($fnd === 'index-manager.php' || $fnd === 'login-manager.php' || $fnd === 'logout-manager.php' || $fnd === 'Readme.md' || $fnd === 'login-manager.css' || $fnd === 'style-manager.css'
                 ?'<form style="display: inline-block" action="" method="post">
-                <div class="button">
-                    <input type="hidden" name="download" value=' . str_replace(' ', '&nbsp;', $fnd) . '>
-                    <input class="downloadBtn" type="submit" value="Download">
+                    <div class="button">
+                        <input type="hidden" name="download" value=' . str_replace(' ', '&nbsp;', $fnd) . '>
+                        <input class="downloadBtn" type="submit" value="Download">
                     </div>
                 </form>
                 <form style="display: inline-block" action="" method="post">
@@ -142,10 +143,10 @@ foreach ($files_and_dirs as $fnd) {
                     </div>
                 </form>'
                 :'<form style="display: inline-block" action="" method="post">
-                <div class="button">
-                   <input type="hidden" name="download" value=' . str_replace(' ', '&nbsp;', $fnd) . '>
-                   <input class="downloadBtn" type="submit" value="Download">
-                   </div>
+                    <div class="button">
+                        <input type="hidden" name="download" value=' . str_replace(' ', '&nbsp;', $fnd) . '>
+                        <input class="downloadBtn" type="submit" value="Download">
+                    </div>
                 </form>
                 <form style="display: inline-block" action="" method="post">
                     <div class="button">
@@ -177,12 +178,17 @@ print('</table>');
 <body>
     <nav style="display: inline-block;">
         <button class="btn-back">
-            <a href="<?php $q_string = explode('/', rtrim($_SERVER['QUERY_STRING'], '/'));
+            <a href="<?php $q_string = explode("./", rtrim($_SERVER['QUERY_STRING'], "./"));
                         array_pop($q_string);
                         count($q_string) == 0
                             ? print('?path=/')
-                            : print('?' . implode('/', $q_string) . '/');
+                            : print('?' . implode("./", $q_string) . "./");
                     ?>" class="backBtn">Go Back!</a>
+        </button>
+        <button class="btn-back">
+            <?php 
+                print('<a class="btn-log" href="index-manager.php?path=/">Go Home!</a>');
+            ?>
         </button>
     </nav>
 </body>
