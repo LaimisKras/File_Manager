@@ -1,0 +1,66 @@
+* {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(to right bottom, rgb(237, 248, 77), rgb(243, 115, 92));
+}
+
+.logoutText {
+    color: black;
+    text-align: center;
+    margin-right: 50px;
+}
+
+table {
+    border-collapse: collapse;
+    margin-bottom: 30px;
+    margin-left: 5%;
+    width: 90%;
+    box-shadow: 1px 3px 10px black;
+}
+
+table tr {
+    background: whitesmoke;
+}
+
+table td,
+table th {
+    border: 1px solid grey;
+    padding: 8px;
+    background-color: whitesmoke;
+    min-width: 310px;
+    padding-left: 20px;
+}
+
+table th {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-align: left;
+    background-color: rgb(31, 30, 30);
+    color:  whitesmoke;
+}
+
+table tr {
+    background-color: whitesmoke; 
+}
+
+.btn-logout {
+    font-size: 20px;
+    border-color: black;
+    color: black;
+    font-weight: bold;
+    letter-spacing: 1px;
+    box-shadow: 1px 3px 10px black;
+    cursor: pointer;
+    background-color: transparent;
+    line-height: 2; 
+}
+
+.btn-logout:hover {
+    background-color: black;
+    color: white;
+    border: 2px solid white;
+}
+
