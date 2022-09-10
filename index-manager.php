@@ -46,11 +46,11 @@ if (isset($_FILES['image'])) {
     $file_size = $_FILES['image']['size'];
     $file_tmp = $_FILES['image']['tmp_name'];
     $file_type = $_FILES['image']['type'];
-    $exploded = explode('.', $_FILES['image']['name']);
+    $exploded = explode('.', $file_name);
     $file_ext = strtolower(end($exploded));
     $extensions = ["jpeg", "jpg", "png"];
     if (in_array($file_ext, $extensions) === false) {
-        $errors = '<p class="warningUpl">File format is not allowed, please choose a JPEG or PNG file!</p>';
+        $errors = '<p class="warningUpl">File format is not allowed, please choose a JPEG, JPG or PNG file!</p>';
         header('refresh:2');
     }
     if ($file_size > 2097152) {
@@ -58,8 +58,8 @@ if (isset($_FILES['image'])) {
         header('refresh: 2');
     }
     if (empty($errors) == true) {
-        move_uploaded_file($file_tmp, $path . $file_name);
-        echo '<p class="warningUpl">Success!Image uploaded</p>';
+        move_uploaded_file($file_tmp, "./images/" . $file_name);
+        echo '<p class="warningUpl">Success! Image uploaded!</p>';
         header('refresh: 2');
     } else {
         print_r($errors);
@@ -73,6 +73,43 @@ print('
         </div>
     </form>
 ');
+
+
+// file download logic
+if (isset($_POST['download'])) {
+    $file = './'. $_GET['path'] . $_POST['download'];
+    $fileToDownloadEscaped = str_replace("&nbsp;", " ", htmlentities($file, 0, 'utf-8'));
+    ob_clean();
+    ob_start();
+    header('Content-Description: File Transfer');
+    header('Content-Type: application/pdf');
+    header('Content-Disposition: attachment; filename=' . basename($fileToDownloadEscaped));
+    header('Content-Transfer-Encoding: binary');
+    header('Expires: 0');
+    header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+    header('Pragma: public');
+    header('Content-Length: ' . filesize($fileToDownloadEscaped));
+    ob_end_flush();
+    readfile($fileToDownloadEscaped);
+    exit;
+}
+
+
+// file delete logic
+if (isset($_POST['delete'])) {
+    $fileDelete = './'. $path . $_POST['delete'];
+    $fileDeleteEscaped = str_replace("&nbsp;", " ", htmlentities($fileDelete, 0, 'utf-8'));
+    if (is_file($fileDelete)) {
+        if (file_exists($fileDelete)) {
+            unlink($fileDelete);
+            print('<p class="warningDlt">File is deleted!</p>');
+            header('refresh: 2');
+        } else {
+            print('<p class="warningDlt">File is not deleted!</p>');
+            header('refresh: 2');
+        }
+    }
+}
 
 
 // folder and files list
