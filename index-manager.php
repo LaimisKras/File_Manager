@@ -13,7 +13,6 @@ print('<br>');
 print('<h1 style="color:black; text-align:center;">File Manager</h1>');
 
 
-
 // folder and files list
 $path = isset($_GET["path"]) ? './' . $_GET["path"] : './';
 $files_and_dirs = scandir($path);
@@ -29,6 +28,33 @@ foreach ($files_and_dirs as $fnd) {
                 :  $fnd)
             . '</td>');
         print('<td>' . (is_dir($path . $fnd)
+            ? ''
+            : ($fnd === 'index-manager.php' || $fnd === 'login-manager.php' || $fnd === 'logout-manager.php' || $fnd === 'Readme.md' || $fnd === 'login-manager.css' || $fnd === 'style-manager.css'
+                ?'<form style="display: inline-block" action="" method="post">
+                <div class="button">
+                    <input type="hidden" name="download" value=' . str_replace(' ', '&nbsp;', $fnd) . '>
+                    <input class="downloadBtn" type="submit" value="Download">
+                    </div>
+                </form>
+                <form style="display: inline-block" action="" method="post">
+                    <div class="button">
+                        <input type="hidden" name="delete" value=' . str_replace(' ', '&nbsp;', $fnd) . '>
+                        <input class="deleteBtn" type="submit" value="Delete">
+                    </div>
+                </form>'
+                :'<form style="display: inline-block" action="" method="post">
+                <div class="button">
+                   <input type="hidden" name="download" value=' . str_replace(' ', '&nbsp;', $fnd) . '>
+                   <input class="downloadBtn" type="submit" value="Download">
+                   </div>
+                </form>
+                <form style="display: inline-block" action="" method="post">
+                    <div class="button">
+                        <input type="hidden" name="delete" value=' . str_replace(' ', '&nbsp;', $fnd) . '>
+                        <input class="deleteBtn" type="submit" value="Delete">
+                    </div>
+                </form>'
+            )
         )
             . '</form></td>');
         print('</tr>');
@@ -39,7 +65,6 @@ print('</table>');
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -49,9 +74,16 @@ print('</table>');
     </style>
     <title>File Manager</title>
 </head>
-
 <body>
-    
+    <nav style="display: inline-block;">
+        <button class="btn-back">
+            <a href="<?php $q_string = explode('/', rtrim($_SERVER['QUERY_STRING'], '/'));
+                        array_pop($q_string);
+                        count($q_string) == 0
+                            ? print('?path=/')
+                            : print('?' . implode('/', $q_string) . '/');
+                    ?>" class="backBtn">Go Back!</a>
+        </button>
+    </nav>
 </body>
-
 </html>
