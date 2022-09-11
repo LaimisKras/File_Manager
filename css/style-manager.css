@@ -48,19 +48,19 @@ table tr {
 
 .warning {
     color:red;
-    font-weight: 500;
+    font-weight: bolder;
     margin-left: 90px;
 }
 
 .warningUpl {
     color:red;
-    font-weight: 500;
+    font-weight: bolder;
     margin-left: 760px;
 }
 
 .warningDlt {
     color: red;
-    font-weight: 500;
+    font-weight: bolder;
     text-align: center;
     margin-top: 150px;
 }
