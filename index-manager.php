@@ -177,12 +177,12 @@ print('</table>');
 </head>
 <body>
     <nav style="display: inline-block;">
-        <button class="btn-back">
-            <a href="<?php $q_string = explode("./", rtrim($_SERVER['QUERY_STRING'], "./"));
+    <button class="btn-back">
+            <a href="<?php $q_string = explode('/', rtrim($_SERVER['QUERY_STRING'], '/'));
                         array_pop($q_string);
                         count($q_string) == 0
                             ? print('?path=/')
-                            : print('?' . implode("./", $q_string) . "./");
+                            : print('?' . implode('/', $q_string) . '/');
                     ?>" class="backBtn">Go Back!</a>
         </button>
         <button class="btn-back">
